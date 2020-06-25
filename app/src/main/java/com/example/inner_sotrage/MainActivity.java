@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int key=0;
     HashMap<Integer, String> hashMap;
     String content;
+    int cnt=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         content=editText.getText().toString();
         PushBtn = findViewById(R.id.PushBtn);
         checkText = findViewById(R.id.checkTxt);
-        hashMap=new HashMap<Integer,String>();
+
+
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         SharedPreferences sharedPreferences=getSharedPreferences("sFile",key);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -46,10 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                         else{
-                            for(int i=0;i<30;i++){
-                                hashMap.put(key, content);
-                                i++;
-                            }
+                            Hash_map(content,cnt);
+                           cnt++;
+
                         }
 
                     }
@@ -67,13 +67,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
+    public HashMap<Integer, String> Hash_map(String value, int hashcode){
+        hashMap=new HashMap<Integer,String>();
+        String receive=content;
+        int hash_code=cnt;
         SharedPreferences sharedPreferences= getSharedPreferences("Sfile",MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
+        sharedPreferences.edit().putString(receive, Integer.toString(hash_code)).apply();
+        hashMap.put(hash_code,receive);
 
+        return hashMap;
     }
+
 }
 
