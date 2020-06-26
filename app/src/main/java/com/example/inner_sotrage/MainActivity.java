@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -42,16 +43,19 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.first: {
-                        if(content.getBytes().length<=0){
-                            Toast.makeText(MainActivity.this, "내용을 입력 해주세요", Toast.LENGTH_SHORT).show();
 
-                        }
-                        else{
-                            Hash_map(content,cnt);
-                           cnt++;
-
-                        }
-
+                        PushBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if(content.getBytes().length<=0){
+                                    Toast.makeText(MainActivity.this, "내용을 입력 해주세요", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Hash_map(content,key);
+                                    cnt++;
+                                }
+                            }
+                        });
                     }
                     case R.id.second: {
                         Toast.makeText(MainActivity.this, "두번쨰 화면", Toast.LENGTH_SHORT).show();
