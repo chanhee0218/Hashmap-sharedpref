@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         bottomNavigationView=findViewById(R.id.bottom_navigation_view);
         FragmentTransaction transaction=fragmentManager.beginTransaction();
-        transaction.replace(R.id.frameLayout,firstFragment).commitAllowingStateLoss();
+        transaction.replace(R.id.s,firstFragment).commitAllowingStateLoss();
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

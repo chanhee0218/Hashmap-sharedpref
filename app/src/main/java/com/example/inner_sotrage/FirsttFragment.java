@@ -38,7 +38,8 @@ class FirstFragment extends Fragment {
         Context context=getContext();
         editText=view.findViewById(R.id.sharedEdit);
         button=view.findViewById(R.id.sharedPushBtn);
-        final Intent intent=new Intent(context,MainActivity.class);
+        final Intent intent=new Intent(context,RecyclerView.class);
+        final Intent arrintent=new Intent(context,RecyclerView.class);
         editString=editText.getText().toString();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +53,7 @@ class FirstFragment extends Fragment {
                     arrayList.add(editString);
                     set=sharedPreferences.getStringSet(editString,null);
                     intent.putExtra("hashsset", (Parcelable) set);
+                    arrintent.putExtra("arrset",arrayList);
                     startActivity(intent);
 
                 }

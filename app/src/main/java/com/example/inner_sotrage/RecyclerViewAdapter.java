@@ -1,20 +1,31 @@
 package com.example.inner_sotrage;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
-    String[] content;
+    private HashSet<String> hashSet;
+    private ArrayList<String> arrayList;
+    Context context;
 
 
-    public RecyclerViewAdapter(String [] content){
-        this.content=content;
+    public RecyclerViewAdapter(ArrayList<String> arrayList, HashSet<String> hashSet) {
+        this.arrayList = arrayList;
+        this.hashSet=hashSet;
+    }
+    public RecyclerViewAdapter(ArrayList<String> arrayList) {
+        this.arrayList = arrayList;
     }
 
     @NonNull
@@ -23,25 +34,31 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item,parent,false);
        RecyclerViewHolder recyclerViewHolder=new RecyclerViewHolder(view);
         return recyclerViewHolder;
+
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.RecyclerViewHolder holder, int position) {
-        return;
+         holder.textView.setText(arrayList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return arrayList.size();
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
+        TextView textView;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.textView= (TextView) itemView;
         }
+
     }
 
-    //;; tqㅃ
+
+
 
 
 }
