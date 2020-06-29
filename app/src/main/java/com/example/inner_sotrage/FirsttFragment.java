@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,12 +44,12 @@ class FirstFragment extends Fragment {
             public void onClick(View v) {
                 if(editString.getBytes().length>0){
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Note",Context.MODE_PRIVATE);
+                    Editor editor=sharedPreferences.edit();
+                    editor.putString(Integer.toString(key),editString);
                     set.add(editString);
                     set=sharedPreferences.getStringSet(editString,null);
-                    List<String> list=new ArrayList<String>(set);
-                    Editor editor=sharedPreferences.edit();
-
-                    editor.putString(Integer.toString(key),editString);
+                    intent.putExtra("hashsset", (Parcelable) set);
+                    startActivity(intent);
 
                 }
             }
