@@ -28,6 +28,7 @@ class FirstFragment extends Fragment {
     String editString;
     //HashMap <String, String> hashMap;
     Set<String> set= new HashSet<String>();
+    ArrayList<String> arrayList;
     int key=0;
     int value=0;
     @Nullable
@@ -47,6 +48,8 @@ class FirstFragment extends Fragment {
                     Editor editor=sharedPreferences.edit();
                     editor.putString(Integer.toString(key),editString);
                     set.add(editString);
+                    arrayList=new ArrayList<>();
+                    arrayList.add(editString);
                     set=sharedPreferences.getStringSet(editString,null);
                     intent.putExtra("hashsset", (Parcelable) set);
                     startActivity(intent);
